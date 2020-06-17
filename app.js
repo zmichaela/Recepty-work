@@ -26,6 +26,8 @@ const elRazeni = document.querySelector("#razeni");
 let vyhledaneRecepty = recepty;
 
 vyhledejRecepty();
+zobrazRecept(0);
+//skryjFormular();
 
 elTlacitko.addEventListener("click", vyhledejRecepty);
 elHledat.addEventListener("input", vyhledejRecepty);
@@ -51,7 +53,7 @@ function vyhledejRecepty() {
     );
   }
 
-  //řazení - od nejlepsiho
+  //řazení 
   if (textRazeni === "1") {
     vyhledaneRecepty.sort(
       (recept1, recept2) => recept2.hodnoceni - recept1.hodnoceni
@@ -62,6 +64,7 @@ function vyhledejRecepty() {
     ); 
   }
   vypisSeznamReceptu();
+  zobrazRecept(0);
 }
 
 
@@ -71,7 +74,7 @@ function vypisSeznamReceptu() {
 
   for (let i = 0; i < vyhledaneRecepty.length; i++) {
     let recept = vyhledaneRecepty[i];
-    obsah += `<div class="recept">
+    obsah += `<div class="recept" data-index=${i} onclick="zobrazRecept()">
                 <div class="recept-obrazek">
                     <img src="${recept.img}" alt="Obrazek">
                 </div>
@@ -84,3 +87,31 @@ function vypisSeznamReceptu() {
 
   elRecepty.innerHTML = obsah;
 }
+
+
+function zobrazRecept (index) {
+  let foto = document.querySelector("#recept-foto");
+  let kategorie = document.querySelector("#recept-kategorie");
+  let hodnoceni = document.querySelector("#recept-hodnoceni");
+  let nazev = document.querySelector("#recept-nazev");
+  let popis = document.querySelector("#recept-popis");
+
+  let recept = vyhledaneRecepty[index];
+
+  foto.src = recept.img;
+  kategorie.textContent = recept.kategorie;
+  hodnoceni.textContent = recept.hodnoceni;
+  nazev.textContent = recept.nadpis;
+  popis.textContent = recept.popis;
+
+}
+
+
+function pridatRecept () {
+
+}
+
+//function skryjFormular () {
+//  document.querySelector("#recept-novy").style.display = "none";
+
+//}
