@@ -51,13 +51,12 @@ function vyhledejRecepty() {
     );
   }
 
-  //řazení - předělat
-  /*if (textKategorie != "") {
-    vyhledaneRecepty = vyhledaneRecepty.sort(
-      (recept) => recept.kategorie === textKategorie
+  //řazení - od nejlepsiho
+  if (textRazeni === "1") {
+    vyhledaneRecepty.sort(
+      (recept1, recept2) => recept1.hodnoceni - recept2.hodnoceni
     );
   }
-*/
   vypisSeznamReceptu();
 }
 
