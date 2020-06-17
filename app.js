@@ -54,11 +54,17 @@ function vyhledejRecepty() {
   //řazení - od nejlepsiho
   if (textRazeni === "1") {
     vyhledaneRecepty.sort(
-      (recept1, recept2) => recept1.hodnoceni - recept2.hodnoceni
+      (recept1, recept2) => recept2.hodnoceni - recept1.hodnoceni
     );
+  } else if (textRazeni === "2") {
+    vyhledaneRecepty.sort(
+      (recept1, recept2) => recept1.hodnoceni - recept2.hodnoceni
+    ); 
   }
   vypisSeznamReceptu();
 }
+
+
 
 function vypisSeznamReceptu() {
   let obsah = "";
